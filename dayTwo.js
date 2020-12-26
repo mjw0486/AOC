@@ -1,5 +1,5 @@
 const fs = require('file-system');
-const input = fs.readFileSync('/Users/michaelwetterauer/Desktop/Algos/adventOfCode/dayTwoInput.txt', 'utf-8');
+const input = fs.readFileSync('./inputFiles/dayTwoInput.txt', 'utf-8');
 const inputArray = input.split('\n').slice(0, -1);
 
 const dayTwo = function(inputArray) {
@@ -45,4 +45,4 @@ const dayTwoPartTwo = function(inputArray) {
   return count;
 }
 
-console.log(dayTwoPartTwo(inputArray));
+// console.log(dayTwoPartTwo(inputArray));
