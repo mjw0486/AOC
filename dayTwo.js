@@ -1,10 +1,10 @@
 const fs = require('file-system');
-const input = fs.readFileSync('./inputFiles/dayTwoInput.txt', 'utf-8');
-const inputArray = input.split('\n').slice(0, -1);
 
-const dayTwo = function(inputArray) {
+const input = fs.readFileSync('./inputFiles/dayTwoInput.txt', 'utf-8');
+
+const dayTwo = function passwordVerification(inputArray) {
   let count = 0;
-  for (const line of inputArray) {
+  inputArray.forEach((line) => {
     const dashIndex = line.indexOf('-');
     const spaceIndex = line.indexOf(' ');
     const colonIndex = line.indexOf(':');
@@ -13,23 +13,21 @@ const dayTwo = function(inputArray) {
     const target = line.slice(spaceIndex + 1, colonIndex);
     const password = line.slice(colonIndex + 2);
     let tempCount = 0;
-    for (const char of password) {
+    password.split('').forEach((char) => {
       if (char === target) {
-        tempCount ++;
+        tempCount += 1;
       }
-    }
+    });
     if (tempCount >= min && tempCount <= max) {
-      count ++;
+      count += 1;
     }
-  }
+  });
   return count;
-}
+};
 
-console.log(dayTwo(inputArray));
-
-const dayTwoPartTwo = function(inputArray) {
+const dayTwoPartTwo = function passwordVerification(inputArray) {
   let count = 0;
-  for (const line of inputArray) {
+  inputArray.forEach((line) => {
     const dashIndex = line.indexOf('-');
     const spaceIndex = line.indexOf(' ');
     const colonIndex = line.indexOf(':');
@@ -39,16 +37,22 @@ const dayTwoPartTwo = function(inputArray) {
     const password = line.slice(colonIndex + 2);
     let tempCount = 0;
     if (password[min - 1] === target) {
-      tempCount ++;
+      tempCount += 1;
     }
     if (password[max - 1] === target) {
-      tempCount ++;
+      tempCount += 1;
     }
     if (tempCount === 1) {
-      count ++;
+      count += 1;
     }
-  }
+  });
   return count;
-}
+};
 
-console.log(dayTwoPartTwo(inputArray));
+const inputArray = input.split('\n').slice(0, -1);
+
+dayTwo(inputArray);
+dayTwoPartTwo(inputArray);
+
+// console.log(dayTwo(inputArray));
+// console.log(dayTwoPartTwo(inputArray));
