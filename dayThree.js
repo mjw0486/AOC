@@ -15,7 +15,7 @@ function dayThree(array) {
 }
 
 function dayThreePartTwo(array) {
-  const counts = [];
+  let result = 1;
   const slopes = [[1, 1], [3, 1], [5, 1], [7, 1], [1, 2]];
   slopes.forEach((slope) => {
     let count = 0;
@@ -28,9 +28,9 @@ function dayThreePartTwo(array) {
       }
       columnIndex = (columnIndex + columnIncrement) % array[i].length;
     }
-    counts.push(count);
+    result *= count;
   });
-  return counts.reduce((accumulator, currentValue) => accumulator * currentValue, 1);
+  return result;
 }
 
 const inputArray = input.split('\n').slice(0, -1);
