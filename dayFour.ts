@@ -40,16 +40,8 @@ function dayFourPartTwo(input: Array<string>): number {
     let tempCount : number = 0;
     for (const key in passportFields) {
       const value = passportFields[key];
-      if (key === 'byr') {
-        if (value.length === 4 && value >= 1920 && value <= 2002) {
-          tempCount += 1;
-        }
-      } else if (key === 'iyr') {
-        if (value.length === 4 && value >= 2010 && value <= 2020) {
-          tempCount += 1;
-        }
-      } else if (key === 'eyr') {
-        if (value.length === 4 && value >= 2020 && value <= 2030) {
+      if ((key === 'byr' || key === 'iyr' || key === 'eyr') && value.length === 4) {
+        if (validateYear(key, Number(value))) {
           tempCount += 1;
         }
       } else if (key === 'hgt') {
@@ -84,6 +76,23 @@ function dayFourPartTwo(input: Array<string>): number {
   }
   return count;
 };
+
+function validateYear(key : string, value : number) : boolean {
+  if (key === 'byr') {
+    if (value >= 1920 && value <= 2002) {
+      return true;
+    }
+  } else if (key === 'iyr') {
+    if (value >= 2010 && value <= 2020) {
+      return true;
+    }
+  } else if (key === 'eyr') {
+    if (value >= 2020 && value <= 2030) {
+      return true;
+    }
+  }
+  return false;
+}
 
 const input = fs.readFileSync('./inputFiles/dayFourInput.txt', 'utf-8');
 const inputArray = input.split("\n\n").slice();
