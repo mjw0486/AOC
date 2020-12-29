@@ -1,25 +1,15 @@
 const fs = require('fs');
 
 function dayFour(input: Array<string>): number {
-  const passportFields = {
-    byr: 'byr',
-    iyr: 'iyr',
-    eyr: 'eyr',
-    hgt: 'hgt',
-    hcl: 'hcl',
-    ecl: 'ecl',
-    pid: 'pid'
-  };
   let count : number = 0;
   for (const passport of input) {
-    const passportArray : Array<string> = passport.split(':');
-    let tempCount : number = 0;
-    for (let i = 0; i < passportArray.length - 1; i ++) {
-      if (passportArray[i].slice(passportArray[i].length - 3) in passportFields) {
-        tempCount += 1;
-      }
+    const validSet = new Set(['byr', 'iyr', 'eyr', 'hgt', 'hcl', 'ecl', 'pid'])
+    const passportArray : Array<string> = passport.split(/[\n\r\s]+/);
+    for (const field of passportArray) {
+      const fieldKey : string = field.split(':')[0];
+      validSet.delete(fieldKey);
     }
-    if (tempCount >= 7) {
+    if (!validSet.size) {
       count += 1;
     }
   }
@@ -103,3 +93,4 @@ const inputArray = input.split("\n\n").slice();
 dayFour(inputArray);
 dayFourPartTwo(inputArray);
 // console.log(dayFourPartTwo(inputArray));
+console.log(dayFour(inputArray));
