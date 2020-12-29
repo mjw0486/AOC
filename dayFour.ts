@@ -38,7 +38,10 @@ function dayFourPartTwo(input: Array<string>): number {
       }
     }
     let tempCount : number = 0;
+    const set = new Set();
+    set.add('cid');
     for (const key in passportFields) {
+      set.add(key);
       const value = passportFields[key];
       if ((key === 'byr' || key === 'iyr' || key === 'eyr') && value.length === 4) {
         if (validateYear(key, Number(value))) {
@@ -70,7 +73,7 @@ function dayFourPartTwo(input: Array<string>): number {
         }
       }
     }
-    if (tempCount === 7) {
+    if (tempCount === 7 && set.size === 8) {
       count += 1;
     }
   }
