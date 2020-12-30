@@ -9,8 +9,9 @@ function dayFivePartTwo(seats : Array<number>) : number {
   let currentMin = sortedSeats[0];
   while(currentMax !== currentMin) {
     const middle = (currentMin) + Math.floor((currentMax - currentMin) / 2);
-    currentMin = sortedSeats[middle - difference] === middle ? middle + 1 : currentMin;
-    currentMax = sortedSeats[middle - difference] === middle ? currentMax : middle;
+    const inTopHalf = sortedSeats[middle - difference] === middle
+    currentMin = inTopHalf ? middle + 1 : currentMin;
+    currentMax = inTopHalf ? currentMax : middle;
   }
   return currentMin;
 }
