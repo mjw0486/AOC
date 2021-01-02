@@ -2,9 +2,9 @@ const fs = require('fs');
 const changeMin = require('./changeMin.ts');
 const changeMax = require('./changeMax.ts');
 
-const input = fs.readFileSync('../AOC/inputFiles/dayFiveInput.txt', 'utf-8');
+const dayFiveInput = fs.readFileSync('../AOC/inputFiles/dayFiveInput.txt', 'utf-8');
 
-function dayFive(input : Array<string>) : object {
+function dayFive(dayFiveInput : Array<string>) : object {
   let highestSeatId : number = 0;
   let seats = [];
 
@@ -33,3 +33,5 @@ function dayFive(input : Array<string>) : object {
 const inputArray = input.split('\n').slice(0, -1);
 
 module.exports = dayFive(inputArray);
+
+export{}
